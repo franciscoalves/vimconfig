@@ -129,6 +129,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+"fzf
+noremap <C-t> :FZF<CR>
+
 "mostra os buffers na status line
 let g:airline#extensions#tabline#enabled = 1
 
