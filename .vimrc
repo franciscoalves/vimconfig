@@ -17,16 +17,20 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'scrooloose/nerdtree'
-
-" get fonts from: https://github.com/Lokaltog/powerline-fonts
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'morhetz/gruvbox'
-Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'michaeljsmith/vim-indent-object'
+
+" get fonts from: https://github.com/Lokaltog/powerline-fonts
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Themes:
+Plugin 'morhetz/gruvbox'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'chriskempson/vim-tomorrow-theme'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,7 +51,7 @@ filetype plugin indent on    " required
 " ======== MY CUSTOMIZATIONS =========
 filetype on
 syntax on
-colorscheme distinguished
+colorscheme Tomorrow-Night
 
 "numero da linha
 set nu
