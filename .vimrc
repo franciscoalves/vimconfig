@@ -1,52 +1,38 @@
-" ========= START VUNDLE INSTALLATION ==========
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" ===== plugins ======
+call plug#begin('~/.vim/bundle')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'tpope/vim-sensible' "sane defaults for vim
+Plug 'tpope/vim-endwise' "add end in ruby, vimscript, etc
+Plug 'tpope/vim-eunuch'  "helpers for unix commands
+Plug 'sheerun/vim-polyglot' "colors for any language
+Plug 'mhinz/vim-signify' "git info
+Plug 'scrooloose/syntastic', { 'do': 'npm install -g eslint'} "syntax check
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Raimondi/delimitMate'
+Plug 'mattn/emmet-vim'
+Plug 'alfredodeza/pytest.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'mxw/vim-jsx' "react
+Plug 'elzr/vim-json' "json
+Plug 'othree/javascript-libraries-syntax.vim' "syntax for various libraries
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/syntastic'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'scrooloose/nerdtree'
-Plugin 'Raimondi/delimitMate'
-Plugin 'mattn/emmet-vim'
-Plugin 'alfredodeza/pytest.vim'
-Plugin 'michaeljsmith/vim-indent-object'
+"these plugins need setup outside vim
+Plug 'marijnh/tern_for_vim', {'do': 'npm install' }
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer' }
 
 " get fonts from: https://github.com/Lokaltog/powerline-fonts
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Themes:
-Plugin 'morhetz/gruvbox'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'chriskempson/vim-tomorrow-theme'
+Plug 'morhetz/gruvbox'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'chriskempson/vim-tomorrow-theme'
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" ======== END VUNDLE INSTALLATION =========
+call plug#end()
 
 " ======== MY CUSTOMIZATIONS =========
 filetype on
@@ -132,9 +118,6 @@ endif
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-
-"fzf
-noremap <C-t> :FZF<CR>
 
 "mostra os buffers na status line
 let g:airline#extensions#tabline#enabled = 1
