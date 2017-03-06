@@ -20,6 +20,7 @@ Plug 'elzr/vim-json' "jso n
 Plug 'othree/javascript-libraries-syntax.vim' "syntax for various libraries
 Plug 'wincent/ferret' "mutifile search
 Plug 'wincent/terminus' " better paste, insert mode cursor, better mouse support
+Plug 'millermedeiros/vim-esformatter', { 'do': 'npm install -g esformatter' }
 
 "these plugins need setup outside vim
 Plug 'marijnh/tern_for_vim', {'do': 'npm install' }
@@ -84,7 +85,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_error_symbol = '❌'
@@ -172,6 +173,10 @@ let g:airline#extensions#tabline#enabled = 1
 "enable tern shortcuts
 nnoremap <leader>td :TernDef<CR>
 nnoremap <leader>tr :TernRefs<CR>
+
+"esformatter shortcuts
+nnoremap <silent> <leader>es :Esformatter<CR>
+vnoremap <silent> <leader>es :EsformatterVisual<CR>
 
 "reload vim config on save
 autocmd bufwritepost .vimrc source ~/.vimrc
