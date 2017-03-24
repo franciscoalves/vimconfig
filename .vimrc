@@ -21,6 +21,7 @@ Plug 'othree/javascript-libraries-syntax.vim' "syntax for various libraries
 Plug 'wincent/ferret' "mutifile search
 Plug 'wincent/terminus' " better paste, insert mode cursor, better mouse support
 Plug 'millermedeiros/vim-esformatter', { 'do': 'npm install -g esformatter' }
+Plug 'SirVer/ultisnips'
 
 "these plugins need setup outside vim
 Plug 'marijnh/tern_for_vim', {'do': 'npm install' }
@@ -180,3 +181,6 @@ vnoremap <silent> <leader>es :EsformatterVisual<CR>
 
 "reload vim config on save
 autocmd bufwritepost .vimrc source ~/.vimrc
+
+"snipets config
+let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/UltiSnips'
