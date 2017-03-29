@@ -6,12 +6,12 @@ Plug 'tpope/vim-endwise' "add end in ruby, vimscript, etc
 Plug 'tpope/vim-eunuch'  "helpers for unix commands
 Plug 'sheerun/vim-polyglot' "colors for any language
 Plug 'mhinz/vim-signify' "git info
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Raimondi/delimitMate'
 Plug 'mattn/emmet-vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'michaeljsmith/vim-indent-object'
@@ -21,11 +21,15 @@ Plug 'othree/javascript-libraries-syntax.vim' "syntax for various libraries
 Plug 'wincent/ferret' "mutifile search
 Plug 'wincent/terminus' " better paste, insert mode cursor, better mouse support
 Plug 'millermedeiros/vim-esformatter', { 'do': 'npm install -g esformatter' }
-Plug 'SirVer/ultisnips'
+
+Plug 'ervandew/supertab'
 
 "these plugins need setup outside vim
 Plug 'marijnh/tern_for_vim', {'do': 'npm install' }
 Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer' }
+
+"Snipet engine:
+Plug 'SirVer/ultisnips'
 
 " get fonts from: https://github.com/Lokaltog/powerline-fonts
 Plug 'vim-airline/vim-airline'
@@ -71,12 +75,6 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 nnoremap <leader>nn :execute 'NERDTreeToggle ' . getcwd()<CR>
 
-"syntastic config
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 "use eslint
 let g:syntastic_javascript_checkers = ['eslint']
 " use the local eslint
@@ -94,6 +92,22 @@ let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
+
+"Snipets Options:
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
@@ -106,6 +120,10 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 "';;' adds a ';' to the end
 autocmd Filetype javascript inoremap ;; <C-o>A;
 
+"maps for snipmate
+inoremap <tab> <c-r>=TriggerSnippet()<cr>
+snoremap <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
 "map para git status - precisa do vim-fugitive
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gu :Git pull --rebase<CR>
@@ -116,7 +134,6 @@ nnoremap <silent> <CR> :let @/=""<CR>
 
 "edit vimrc file
 nnoremap <leader>vim :e ~/.vim/.vimrc<CR>
-
 
 "navegacao buffers
 nmap <tab> :bn<CR>
@@ -181,6 +198,3 @@ vnoremap <silent> <leader>es :EsformatterVisual<CR>
 
 "reload vim config on save
 autocmd bufwritepost .vimrc source ~/.vimrc
-
-"snipets config
-let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/UltiSnips'
