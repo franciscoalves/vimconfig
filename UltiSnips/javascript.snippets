@@ -1,9 +1,37 @@
+global !p
+from javascript_snippets import (
+	semi, space_before_function_paren, keyword_spacing
+)
+endglobal
+
 snippet :, "Object Value JS"
 ${1:value_name}: ${0:value},
 endsnippet
 
 snippet : "Object key key: 'value'"
 ${1:key}: ${2:"${3:value}"}${4:, }
+endsnippet
+
+snippet fore "Array.forEach(.."
+${1:array}.forEach(item => {
+  ${2:what}
+});${3}
+endsnippet
+
+snippet if "if (condition) { ... }"
+if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+  ${VISUAL}$0
+}
+endsnippet
+
+snippet fun "function (fun)" w
+function ${1:function_name}`!p snip.rv = space_before_function_paren(snip)`(${2:argument}) {
+  ${VISUAL}$0
+}
+endsnippet
+
+snippet log "console.log(value)"
+console.log(${1:value});
 endsnippet
 
 snippet slog "console.log(JSON.stringify(value))"
