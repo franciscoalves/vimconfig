@@ -8,6 +8,7 @@ Plug 'sheerun/vim-polyglot' "colors for any language
 Plug 'mhinz/vim-signify' "git info
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fuzzy finder
 Plug 'junegunn/fzf.vim'
@@ -50,6 +51,15 @@ colorscheme Tomorrow-Night
 "numero da linha
 set nu
 set nuw=1
+
+"NerdComment:
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
 
 "powerline customization
 let g:airline_left_sep = ''
