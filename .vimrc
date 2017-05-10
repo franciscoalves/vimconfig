@@ -4,6 +4,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible' "sane defaults for vim
 Plug 'tpope/vim-endwise' "add end in ruby, vimscript, etc
 Plug 'tpope/vim-eunuch'  "helpers for unix commands
+Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot' "colors for any language
 Plug 'mhinz/vim-signify' "git info
 Plug 'tpope/vim-fugitive'
@@ -16,12 +17,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'mxw/vim-jsx' "react
-Plug 'elzr/vim-json' "jso n
-Plug 'othree/javascript-libraries-syntax.vim' "syntax for various libraries
 Plug 'wincent/ferret' "mutifile search
 Plug 'wincent/terminus' " better paste, insert mode cursor, better mouse support
 Plug 'millermedeiros/vim-esformatter', { 'do': 'npm install -g esformatter' }
+
+" Javascript:
+" Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/es.next.syntax.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mxw/vim-jsx'
+" Plug 'gavocanov/vim-js-indent'
 
 Plug 'ervandew/supertab'
 
@@ -40,23 +46,31 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'Lokaltog/vim-distinguished'
 Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'ajh17/Spacegray.vim'
 
 call plug#end()
+
 
 " ======== MY CUSTOMIZATIONS =========
 filetype on
 syntax on
-colorscheme Tomorrow-Night
+colorscheme spacegray
+
 
 "numero da linha
 set nu
 set nuw=1
+"busca enquanto digito
+set incsearch
+set hlsearch
+
+"esconde o buffer ao inves de fechar. permite que vc tenha um arquivo nao
+"salvo em outro buffer
+set hidden
 
 "NerdComment:
-
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
@@ -67,15 +81,7 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-"busca enquanto digito
-set incsearch
-set hlsearch
-
-"esconde o buffer ao inves de fechar. permite que vc tenha um arquivo nao
-"salvo em outro buffer
-set hidden
-
-"leader key
+"Leader:
 let mapleader = ","
 
 "Personalizacoes do NERDTree
@@ -103,6 +109,7 @@ let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
 
+
 "Snipets Options:
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -124,6 +131,8 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 set expandtab
+set showmatch
+
 "set tab preferences for javascript
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
