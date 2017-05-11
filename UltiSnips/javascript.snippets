@@ -1,15 +1,10 @@
-global !p
-from javascript_snippets import (
-	semi, space_before_function_paren, keyword_spacing
-)
-endglobal
-
 snippet :, "Object Value JS"
 ${1:value_name}: ${0:value},
 endsnippet
 
 snippet : "Object key key: 'value'"
-${1:key}: ${2:"${3:value}"}${4:, }
+${1:key}: ${2:'${3:value}'}${4:,}
+${5}
 endsnippet
 
 snippet fore "Array.forEach(.."
@@ -19,7 +14,7 @@ ${1:array}.forEach(item => {
 endsnippet
 
 snippet if "if (condition) { ... }"
-if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
+if (${1:true}) {
   ${VISUAL}$0
 }
 endsnippet
@@ -36,4 +31,27 @@ endsnippet
 
 snippet slog "console.log(JSON.stringify(value))"
 console.log(JSON.stringify(${1:value}, null, '  '));
+endsnippet
+
+snippet des "describe(..."
+describe('${1}', function () {
+  ${2}
+});
+endsnippet
+
+snippet it "it(..."
+it('${1}', ${2:async} function () {
+  ${3}
+});
+endsnippet
+
+snippet ex "expect(..."
+expect(${1:what})${2};${3}
+endsnippet
+
+snippet expost "this.agent.post(...).expect"
+${1:const res = }await this.agent.post('${2:/v1/my/route}')
+  ${3:.authorizedAsAccount(${4:1})}
+  ${5:.send({${6}})}
+  ${6:.expect(${7:200})};
 endsnippet
