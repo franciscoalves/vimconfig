@@ -8,7 +8,7 @@ Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot' "colors for any language
 Plug 'mhinz/vim-signify' "git info
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "fuzzy finder
@@ -92,21 +92,27 @@ let NERDTreeShowHidden=1
 nnoremap <leader>nn :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 "use eslint
-let g:syntastic_javascript_checkers = ['eslint']
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
 " use the local eslint
-let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+" let g:syntastic_error_symbol = '❌'
+" let g:syntastic_style_error_symbol = '⁉️'
+" let g:syntastic_warning_symbol = '⚠️'
+" let g:syntastic_style_warning_symbol = '💩'
 
 
 
@@ -139,10 +145,6 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 "';;' adds a ';' to the end
 autocmd Filetype javascript inoremap ;; <C-o>A;
 
-"maps for snipmate
-inoremap <tab> <c-r>=TriggerSnippet()<cr>
-snoremap <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
-
 "map para git status - precisa do vim-fugitive
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gu :Git pull --rebase<CR>
@@ -159,6 +161,9 @@ nmap <tab> :bn<CR>
 nmap <s-tab> :bp<CR>
 nmap <leader>d :bd<CR>
 nmap <leader>q <c-w>q
+
+nmap <silent> <A-k> <Plug>(ale_previous_wrap)
+nmap <silent> <A-j> <Plug>(ale_next_wrap)
 
 "mover texto
 nnoremap <C-Down> :m+<CR>
@@ -214,6 +219,3 @@ nnoremap <leader>tr :TernRefs<CR>
 "esformatter shortcuts
 nnoremap <silent> <leader>es :Esformatter<CR>
 vnoremap <silent> <leader>es :EsformatterVisual<CR>
-
-"reload vim config on save
-autocmd bufwritepost .vimrc source ~/.vimrc
