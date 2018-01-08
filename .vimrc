@@ -20,6 +20,10 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'wincent/ferret' "mutifile search
 Plug 'wincent/terminus' " better paste, insert mode cursor, better mouse support
 Plug 'millermedeiros/vim-esformatter', { 'do': 'npm install -g esformatter' }
+Plug 'rodjek/vim-puppet'
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-vagrant'
+Plug 'ekalinin/dockerfile.vim'
 
 " Javascript:
 " Plug 'othree/yajs.vim'
@@ -36,7 +40,7 @@ Plug 'marijnh/tern_for_vim', {'do': 'npm install' }
 Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer' }
 
 "Snipet engine:
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 
 " get fonts from: https://github.com/Lokaltog/powerline-fonts
 Plug 'vim-airline/vim-airline'
@@ -56,6 +60,8 @@ filetype on
 syntax on
 colorscheme spacegray
 
+" yank to clipboard
+set clipboard=unnamed
 
 "numero da linha
 set nu
@@ -67,6 +73,11 @@ set hlsearch
 "esconde o buffer ao inves de fechar. permite que vc tenha um arquivo nao
 "salvo em outro buffer
 set hidden
+
+"Terraform:
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_remap_spacebar=1
 
 "NerdComment:
 " Add spaces after comment delimiters by default
@@ -135,6 +146,7 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+let g:syntastic_python_checkers = ['flake8']
 
 set expandtab
 set showmatch
@@ -208,6 +220,10 @@ endif
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+"pytest
+nnoremap <leader>m :Pytest method<CR>
+nnoremap <leader>s :Pytest session<CR>
 
 "mostra os buffers na status line
 let g:airline#extensions#tabline#enabled = 1
